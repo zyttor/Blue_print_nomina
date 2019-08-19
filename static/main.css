@@ -1,0 +1,22 @@
+table thead {
+    color: #ffffff;
+    background-color: #000080;
+    font-weight: bold;
+    text-align: center;
+}
+
+table tfoot{
+    background-color: #98ff98;
+    font-weight: bold;
+
+}
+
+label {
+    font-weight: bold;
+}
+
+.partida {
+    font-weight: bold;
+    text-align: center;
+
+}

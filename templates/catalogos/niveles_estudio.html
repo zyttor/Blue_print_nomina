@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+
+{% block titulo %} Catálogo Nivel Estudios {% endblock %}
+
+{% block body %}
+
+
+<div class="row">
+
+
+    <div class="col-md-5">
+        <table id="catalogo" class="table table-hover table-striped table-bordered table-sm">
+
+            <thead>
+            <td scope="col" align="center">ID</td>
+            <td align="center">Nivel</td>
+            <td align="center">Operaciones</td>
+            </thead>
+            <tbody>
+            {% for nivel in niveles%}
+            <tr>
+                <td align="right">{{nivel.0}}</td>
+                <td>{{nivel.1}}</td>
+                <td>
+                    <a id="btn_{{nivel.0}}" class="userinfo btn btn-secondary">Actualizar</a>
+                    <a class="btn btn-danger" href="/eliminar_nivel/{{nivel.0}}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script>
+
+$.ajax({
+                type: "POST",
+                url: "http://192.158.2.175/WebService/ws/dataservice.asmx/GetAllProfileData",
+                data: {},
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                async: true,
+                success: function (data) {
+
+                    var responseJson = JSON.parse(JSON.stringify(data.d));
+                    alert(responseJson );
+                },
+                error: function (e) {
+
+                    alert(e.responseText);
+                }
+            });
+        }
+
+
+    $(document).ready(function(){
+
+ $('.userinfo').click(function(){
+   var id = this.id;
+   var splitid = id.split('_');
+   var userid = splitid[1];
+    alert(userid)
+   // AJAX request
+   $.ajax({
+    url: '192.168.99.20:3000/ws_nivel',
+    type: 'get',
+    success: function(response){
+      // Add response in Modal body
+     // $('.modal-body').html(response);
+        alert(" if request.method == 'POST':")
+      // Display Modal
+      //$('#empModal').modal('show');
+    }
+
+  });
+ });
+});
+
+</script>
+{% endblock %}

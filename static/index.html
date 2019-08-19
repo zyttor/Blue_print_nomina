@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>How to consume RESTful Web Service using jQuery</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="consume_rest.js" type="text/html"></script>
+    </head>
+    <body>
+
+<button id="ajax">ajax call</button>
+<button id="json">json</button>
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+    alert('ajax');
+         $.ajax({
+             type: "GET",
+             dataType: "json",
+             url: "http://127.0.0.1:3000/ws_nivel",
+             success: function(data){
+                console.log(data)
+             }
+         });
+});
+
+    $('#json').click(function(){
+        alert('json');
+         $.getJSON("http://127.0.0.1:3000/ws_nivel",
+         function(data) {
+
+            console.log(data)
+          });
+    });
+
+    $('#ajax').click(function(){
+        alert('ajax');
+         $.ajax({
+             type: "GET",
+             dataType: "json",
+             url: "http://127.0.0.1:3000/ws_nivel",
+             success: function(data){
+                console.log(data)
+             }
+         });
+    });
+
+</script>
+
+    </body>
+</html>
